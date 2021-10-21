@@ -1,0 +1,26 @@
+from django.db import models
+from django.db.models.fields.related import create_many_to_many_intermediary_model
+from django.utils.html import format_html
+# Create your models here.
+
+
+
+class Category(models.Model):
+    cat_id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    url = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='category/')
+    add_date = models.DateTimeField(auto_now_add=True , null=True)
+
+    def image_tag(self):
+        return format_html('<img src="/media/{}" style="width:40px;height:40px;border-radius:50%" />'.format(self.image))
+
+    
+    def __str__(self):
+        return self.title
+
+
+class bookmark(models.Model):
+    bookmark = models.CharField(max_length=100)
+

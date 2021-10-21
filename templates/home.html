@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Lawmkr{% endblock %}
+
+{% block content %}
+<form action="{% url 'searchbar' %}" method="get">
+{% csrf_token %}
+<input type="text" name="search"/>
+<button type="submit">Search</button>
+</form>
+<div  class="container">
+
+{% for cat in cats %}
+<div class="card">
+<div class="img-container">
+<img src="/media/{{cat.image}}"  class="responsive-image" alt="">
+
+</div>
+<div class="card-content">
+<div class="card-title">
+{{cat.title}}
+</div>
+<p class="truncate">{{cat.description}}</p>
+<div class="container">
+<a href="" class="btn bg-primary">VIEW</a>
+</div>
+
+</div>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock content %}
+
+
+
